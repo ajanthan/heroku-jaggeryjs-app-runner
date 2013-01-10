@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/[balaajanthan@gmail.com]/[heroku-jaggeryjs-app-runner].png)]
 How to run a jaggery app in Heroku PAAS
 ======================================
 1.Clone this code
