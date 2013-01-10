@@ -1,8 +1,11 @@
 How to run a jaggery app in Heroku PAAS
 ======================================
 1.Clone this code
+
 2.Put your jaggery app into apps/ROOT
+
 3.Push the code into Heroku java app
+
 4.You can access your jaggery app at http://{appid}.herokuapp.com
 
 {jaggery.js} - The delicious Javascript framework
