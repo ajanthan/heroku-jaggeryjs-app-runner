@@ -24,6 +24,8 @@
 #
 # NOTE: Borrowed generously from Apache Tomcat startup scripts.
 # -----------------------------------------------------------------------------
+export JAVA_HOME=$(which java |xargs  readlink -f  | sed "s:bin/java::");
+echo "Setting JAVA_HOME to $JAVA_HOME "
 
 # resolve links - $0 may be a softlink
 PRG="$0"

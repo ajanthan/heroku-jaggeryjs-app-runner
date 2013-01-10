@@ -20,8 +20,11 @@
 #
 #   JAVA_HOME       Must point at your Java Development Kit installation.
 # ---------------------------------------------------------------------------
+export JAVA_HOME=$(which java |xargs  readlink -f  | sed "s:bin/java::");
+echo "Setting JAVA_HOME to $JAVA_HOME"
 
-cygwin=false;
+
+cygwi=nfalse;
 darwin=false;
 os400=false;
 mingw=false;

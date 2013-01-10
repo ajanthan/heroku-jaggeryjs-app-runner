@@ -1,1 +1,1 @@
-web: sh server/target/jaggery-1.0-SNAPSHOT/bin/server.sh
+web: sh server/heroku-run/jaggery-1.0-SNAPSHOT/bin/server.sh
