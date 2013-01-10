@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.bkayts</groupId>
+        <artifactId>heroku-jaggeryjs-server-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>server-run</artifactId>
+    <packaging>pom</packaging>
+    <name>Jaggery - heroku server</name>
+
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+    <build>
+    <plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+            <execution>
+                <id>2-unpack-wso2carbon</id>
+                <phase>package</phase>
+                <goals>
+                    <goal>unpack</goal>
+                </goals>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>org.bkayts</groupId>
+                            <artifactId>jaggery</artifactId>
+                            <version>${heroku.jaggery.js.version}</version>
+                            <type>zip</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>heroku-run</outputDirectory>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
+        </executions>
+
+    </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>3-extract-docs-from-components</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    <configuration>
+                        <tasks>
+
+                            <!--<delete file="heroku-run/jaggeryjs-server.jar"/>-->
+                          <!--  <delete dir="target/jaggery-1.0-SNAPSHOT/apps/coffeeshop"/>
+                            <delete dir="target/jaggery-1.0-SNAPSHOT/apps/freshometer"/>
+                            <delete dir="target/jaggery-1.0-SNAPSHOT/apps/ROOT"/>
+                            <delete dir="target/jaggery-1.0-SNAPSHOT/apps/sample"/>
+                            <delete dir="target/jaggery-1.0-SNAPSHOT/apps/shout"/>
+                            <delete dir="target/jaggery-1.0-SNAPSHOT/apps/shout"/>-->
+                            <delete dir="../p2-profile-gen/target"/>
+                            <delete dir="../distribution/target"/>
+                            <delete dir="target/*"/>
+                        </tasks>
+                    </configuration>
+                </execution>
+
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <filesets>
+                    <fileset>
+                        <directory>heroku-run</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                        <followSymlinks>false</followSymlinks>
+                    </fileset>
+                </filesets>
+            </configuration>
+        </plugin>
+    </plugins>
+    </build>
+
+</project>
