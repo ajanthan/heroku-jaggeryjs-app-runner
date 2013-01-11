@@ -26,6 +26,20 @@
 # -----------------------------------------------------------------------------
 export JAVA_HOME=$(which java |xargs  readlink -f  | sed "s:bin/java::");
 echo "Setting JAVA_HOME to $JAVA_HOME "
+echo "Setting DB parametters"
+# Parsing DB URL
+proto="$(echo $DATABASE_URL | grep :// | sed -e's,^\(.*://\).*,\1,g')"
+url=$(echo $DATABASE_URL | sed -e s,$proto,,g)
+export dbusername="$(echo $url | grep : | cut -d: -f1)"
+export dbpassword="$(echo $url | sed -e s,$dbusername:,,g  | grep @| cut -d@ -f1)"
+export dbhostname=$(echo $url | sed -e s,$dbusername:$dbpassword@,,g | cut -d: -f1)
+export dbport=$(echo $url | sed -e s,$dbusername:$dbpassword@,,g | cut -d: -f2| cut -d/ -f1)
+export dbname="$(echo $url | grep / | cut -d/ -f2-)"
+export dbtype="postgresql";
+export dbdriver="org.postgresql.Driver";
+
+
+
 
 # resolve links - $0 may be a softlink
 PRG="$0"

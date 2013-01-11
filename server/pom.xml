@@ -68,7 +68,10 @@
                     </goals>
                     <configuration>
                         <tasks>
-
+                            <copy todir="heroku-run/jaggery-1.0-SNAPSHOT/carbon/repository/components/lib">
+                            <fileset dir="lib">
+                            </fileset>
+                            </copy>
                             <!--<delete file="heroku-run/jaggeryjs-server.jar"/>-->
                           <!--  <delete dir="target/jaggery-1.0-SNAPSHOT/apps/coffeeshop"/>
                             <delete dir="target/jaggery-1.0-SNAPSHOT/apps/freshometer"/>
